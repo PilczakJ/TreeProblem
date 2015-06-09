@@ -1,6 +1,5 @@
 c:\users\john\documents\visual studio 2013\Projects\TreeProblem\TreeProblem\bin\Debug\TreeProblem.exe.config
 c:\users\john\documents\visual studio 2013\Projects\TreeProblem\TreeProblem\bin\Debug\TreeProblem.exe
 c:\users\john\documents\visual studio 2013\Projects\TreeProblem\TreeProblem\bin\Debug\TreeProblem.pdb
-c:\users\john\documents\visual studio 2013\Projects\TreeProblem\TreeProblem\obj\Debug\TreeProblem.csprojResolveAssemblyReference.cache
 c:\users\john\documents\visual studio 2013\Projects\TreeProblem\TreeProblem\obj\Debug\TreeProblem.exe
 c:\users\john\documents\visual studio 2013\Projects\TreeProblem\TreeProblem\obj\Debug\TreeProblem.pdb

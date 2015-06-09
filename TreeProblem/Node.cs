@@ -12,6 +12,8 @@ namespace TreeProblem
         private Node parent;
         private Node left;
         private Node right;
+        public string name;
+        public int level;
 
         public Node()
         {
@@ -35,8 +37,7 @@ namespace TreeProblem
             set { left = value; }
         }
 
-        public Node Right
-        {
+        public Node Right{
             get { return right; }
             set { right = value; }
         }

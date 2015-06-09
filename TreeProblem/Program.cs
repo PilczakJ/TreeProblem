@@ -10,6 +10,15 @@ namespace TreeProblem
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter a number of levels");
+            string input = Console.ReadLine();
+            int levels;
+            Int32.TryParse(input, out levels);
+            Tree t = new Tree(levels);
+            Console.WriteLine("\nTree:");
+            t.PrintTree(t.Root);
+
+            
         }
     }
 }
