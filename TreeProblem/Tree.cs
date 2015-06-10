@@ -103,9 +103,9 @@ namespace TreeProblem
                     }
                     //Otherwise, we calculate the sum of the parent and parent's neighbor depending on which child it is
                     else if (n == n.Parent.Left)
-                        n.value = n.Parent.value + FindLeftNeighbor(n.Parent).value;
+                        n.value = n.Parent.value + FindLeftNeighbor(n.Parent);
                     else
-                        n.value = n.Parent.value + FindRightNeighbor(n.Parent).value;
+                        n.value = n.Parent.value + FindRightNeighbor(n.Parent);
                 }
             }
         }
@@ -121,21 +121,21 @@ namespace TreeProblem
                 n.value = root.value;
             }
             else if (n == n.Parent.Left)
-                n.value = n.Parent.value + FindLeftNeighbor(n.Parent).value;
+                n.value = n.Parent.value + FindLeftNeighbor(n.Parent);
             else
-                n.value = n.Parent.value + FindRightNeighbor(n.Parent).value;
+                n.value = n.Parent.value + FindRightNeighbor(n.Parent);
         }
 
         /// <summary>
-        /// Finds the right neighbor node of the parameter node
+        /// Finds the value of the right neighbor node of the parameter node
         /// </summary>
         /// <param name="n"></param>
         /// <returns>The right neigbor of the parameter node</returns>
-        private Node FindRightNeighbor(Node n)
+        private int FindRightNeighbor(Node n)
         {
             // If it is the left child, the right neighbor is the right child
             if (n == n.Parent.Left)
-                return n.Parent.Right;
+                return n.Parent.Right.value;
 
             // If not, go up the tree until it is the right child or it is the root
             Node curNode = n;
@@ -144,12 +144,11 @@ namespace TreeProblem
             {
                 curNode = curNode.Parent;
                 levelsUp++;
+                
+                // If it makes it to the root without being the right child, there is no right neighbor
                 if (curNode.name == "root")
-                    return new Node(0);
+                    return 0;
             }
-            // If it makes it to the root without being the right child, there is no right neighbor
-            if (curNode.Parent == null)
-                return new Node(0);
             
             // If not, move up to the parent that it is the right child of
             curNode = curNode.Parent;
@@ -167,20 +166,20 @@ namespace TreeProblem
                 SetData(curNode);
 
             // Return the neighbor
-            return curNode;
+            return curNode.value;
 
         }
 
         /// <summary>
-        /// Finds the left neighbor node of the inputted node
+        /// Finds the value of the left neighbor node of the inputted node
         /// </summary>
         /// <param name="n"></param>
         /// <returns>The left neigbor of the parameter node</returns>
-        private Node FindLeftNeighbor(Node n)
+        private int FindLeftNeighbor(Node n)
         {
             // If the node is the right child of its parent, the left neighbor is its sibling
             if (n == n.Parent.Right)
-                return n.Parent.Left;
+                return n.Parent.Left.value;
 
             // If not, go up until it is the right child
             Node curNode = n;
@@ -189,13 +188,11 @@ namespace TreeProblem
             {
                 curNode = curNode.Parent;
                 levelsUp++;
+                
+                // If it reaches the root without being the right child, there is no left neighbor
                 if (curNode.name == "root")
-                    return new Node(0);
+                    return 0;
             }
-
-            // If it reaches the root without being the right child, there is no left neighbor
-            if (curNode.Parent == null)
-                return new Node(0);
 
             // If not, move up to the parent then move to the left child
             curNode = curNode.Parent;
@@ -210,7 +207,7 @@ namespace TreeProblem
             if (Int32.Parse(curNode.name) > Int32.Parse(n.name))
                 SetData(curNode);
 
-            return curNode;
+            return curNode.value;
         }
 
         /// <summary>

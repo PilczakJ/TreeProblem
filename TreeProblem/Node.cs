@@ -8,11 +8,20 @@ namespace TreeProblem
 {
     class Node
     {
+        // Value of the node
         public int value;
+
+        // The node's parent
         private Node parent;
+
+        // The node's children
         private Node left;
         private Node right;
+
+        // The node's name
         public string name;
+
+        // The level the node is on
         public int level;
 
         public Node()
