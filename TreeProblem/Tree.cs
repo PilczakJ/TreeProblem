@@ -10,15 +10,9 @@ namespace TreeProblem
     {
         // Keeps track of the root of the whole tree
         private Node root;
-
-        // Keeps track of what level the tree is currently on
-        private int curLevel;
         
         // The user inputted level
         private int totalLevels;
-
-        // Used for naming, gives an order to filling in the data
-        private int counter = 1;
 
         // The actual list of data
         private List<Node> data;
@@ -37,7 +31,6 @@ namespace TreeProblem
             root.level = 1;
 
             // Set the total levels
-            curLevel = 1;
             totalLevels = levels;
 
             // Populate the tree
