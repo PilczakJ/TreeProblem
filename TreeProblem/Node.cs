@@ -18,9 +18,6 @@ namespace TreeProblem
         private Node left;
         private Node right;
 
-        // The node's name
-        public string name;
-
         // The level the node is on
         public int level;
 

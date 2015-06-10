@@ -34,7 +34,6 @@ namespace TreeProblem
             // Make and add the root
             root = new Node();
             data.Add(root);
-            root.name = "root";
             root.level = 1;
 
             // Set the total levels
@@ -58,13 +57,11 @@ namespace TreeProblem
         {
             // Make the left child
             rootNode.Left = new Node();
-            rootNode.Left.name = counter++.ToString();
             rootNode.Left.Parent = rootNode;
             rootNode.Left.level = rootNode.level+1;
 
             // Make the right child
             rootNode.Right = new Node();
-            rootNode.Right.name = counter++.ToString();
             rootNode.Right.Parent = rootNode;
             rootNode.Right.level = rootNode.level+1;
 
@@ -84,7 +81,7 @@ namespace TreeProblem
         }
 
         /// <summary>
-        /// Now that the tree has all its nodes, we will set the data using the incremental names given,
+        /// Now that the tree has all its nodes, we will set the data using its position in the data list,
         /// if a node requires the value of one ahead of it to find its parent's neighbor, that will be checked only 
         /// when needed.
         /// </summary>
@@ -94,10 +91,10 @@ namespace TreeProblem
             foreach(Node n in nodes)
             {
                 //Don't check if the node is null, it is the root, or if it has been checked already
-                if(n != null && n.name != "root" && n.value == 1)
+                if(n != null && n != root && n.value == 1)
                 {
                     //If it is the direct child of the root, its value will be the root's value
-                    if (n.Parent.name == "root")
+                    if (n.Parent == root)
                     {
                         n.value = root.value;
                     }
@@ -116,7 +113,7 @@ namespace TreeProblem
         /// <param name="n">The specific node</param>
         private void SetData(Node n)
         {
-            if (n.Parent.name == "root")
+            if (n.Parent == root)
             {
                 n.value = root.value;
             }
@@ -146,7 +143,7 @@ namespace TreeProblem
                 levelsUp++;
                 
                 // If it makes it to the root without being the right child, there is no right neighbor
-                if (curNode.name == "root")
+                if (curNode == root)
                     return 0;
             }
             
@@ -162,7 +159,7 @@ namespace TreeProblem
                 curNode = curNode.Left;
             
             // If the neighbor's data isn't set yet, set it so that this one's results are accurate
-            if (Int32.Parse(curNode.name) > Int32.Parse(n.name))
+            if (data.IndexOf(curNode) > data.IndexOf(n))
                 SetData(curNode);
 
             // Return the neighbor
@@ -190,7 +187,7 @@ namespace TreeProblem
                 levelsUp++;
                 
                 // If it reaches the root without being the right child, there is no left neighbor
-                if (curNode.name == "root")
+                if (curNode == root)
                     return 0;
             }
 
@@ -204,14 +201,25 @@ namespace TreeProblem
                 curNode = curNode.Right;
 
             // If the neighbor isn't set yet, set it
-            if (Int32.Parse(curNode.name) > Int32.Parse(n.name))
+            if (data.IndexOf(curNode) > data.IndexOf(n))
                 SetData(curNode);
 
             return curNode.value;
         }
 
         /// <summary>
-        /// Recursively prints out the tree
+        /// Recursively prints out the tree starting at the root, working its way down the far left side, and 
+        /// working its way left to right
+        /// For example:
+        ///                1
+        ///             /    \
+        ///           1         1
+        ///          /  \      / \
+        ///        1     2    2   1
+        ///       / \   / \  / \ / \
+        ///       1 3   3 4  4 3 3 1
+        ///       
+        /// comes out as 1 1 1 1 3 2 3 4 1 2 4 3 1 3 1
         /// </summary>
         /// <param name="rootNode">The root of this particular call of PrintTree</param>
         public void PrintTree(Node rootNode)
