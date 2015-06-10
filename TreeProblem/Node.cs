@@ -42,8 +42,13 @@ namespace TreeProblem
             set { right = value; }
         }
 
+        /// <summary>
+        /// Determines whether the node is a leaf or not
+        /// </summary>
+        /// <returns>A bool representing whether it is a leaf</returns>
         public bool IsLeaf()
         {
+            // There will always be two children or none based on the constraints of this problem
             if (left == null)
                 return true;
             else
