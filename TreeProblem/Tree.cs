@@ -130,7 +130,7 @@ namespace TreeProblem
             // If not, go up the tree until it is the right child or it is the root
             Node curNode = n;
             int levelsUp = 0;
-            while(curNode == curNode.Parent.Right || curNode.Parent == null)
+            while(curNode == curNode.Parent.Right || curNode == root)
             {
                 curNode = curNode.Parent;
                 levelsUp++;
@@ -147,7 +147,7 @@ namespace TreeProblem
             // Go to the right side
             curNode = curNode.Right;
 
-            // Go down the same amount you went up staying to the left
+            // Go down the same amount you went up always moving towards the left
             for (int i = 0; i < levelsUp-1; i++)
                 curNode = curNode.Left;
             
@@ -174,7 +174,7 @@ namespace TreeProblem
             // If not, go up until it is the right child
             Node curNode = n;
             int levelsUp = 0;
-            while (curNode == curNode.Parent.Left || curNode.Parent == null)
+            while (curNode == curNode.Parent.Left || curNode == root)
             {
                 curNode = curNode.Parent;
                 levelsUp++;
