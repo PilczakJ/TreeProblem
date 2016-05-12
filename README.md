@@ -1,6 +1,7 @@
 # TreeProblem
 
 ## Description
+Problem given to solve by Neuroscouting.  
 This is a relatively simple programming problem written in C# where I create a tree where each node has two children and the values of each node are determined by adding the parent of the node's value with the node's parent's right or left neighbor depending on which side the node is on. The program accepts user input to determine how many levels down that the tree goes.
 
 ##Organization
